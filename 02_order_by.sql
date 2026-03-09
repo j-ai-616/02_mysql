@@ -48,3 +48,20 @@ FROM
     tbl_menu
 ORDER BY
     FIELD(orderable_status, 'N', 'Y');
+
+-- NULL 값을 포함한 정렬
+SELECT
+    category_code,
+    category_name,
+    ref_category_code
+FROM
+    tbl_category
+ORDER BY
+-- 오름차순 시 NULL 처음 (default) - null 값을 더 작게 취급한다.
+    -- ref_category_code ASC;
+-- 오름차순 NULL 뒤로 (IS NULL로 True, False 판단)
+    -- ref_category_code IS NULL, ref_category_code ASC;
+-- 내림차순 시 NULL 뒤로 (default) - null 값을 더 작게 취급한다.
+    -- ref_category_code DESC;
+-- 내림차순 시 NULL 앞으로 (IS NOT NULL로 True, False 판단)
+    ref_category_code IS NOT NULL, ref_category_code DESC;
