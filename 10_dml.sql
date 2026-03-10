@@ -80,3 +80,23 @@ DELETE FROM
 ORDER BY
     menu_code DESC
 Limit 2;
+
+-- [참고] replace (내부적으로는 행을 지웠다가 다시 넣는 작업)
+-- insert 사용 시에는 menu_code(pk) 중복으로 삽입 오류가 발생하지만
+-- replace는 내부적으로 행을 삭제 후 다시 삽입해주기 때문이 수행된다.
+-- INSERT INTO 
+REPLACE INTO  -- 내부적으로는 행이 삭제되었다가 다시 넣어지는 것
+    tbl_menu
+VALUES
+    (1, '참기름소주', 4500, 10, 'Y');
+
+-- replace ... set ... 구문도 menu_code(pk) 중복 시
+-- 기존 행 삭제 후 새로운 행을 삽입하는 동작이 일어난다.
+REPLACE -- 내부적으로는 행 삭제 후 삽입
+    tbl_menu
+SET
+    menu_code = 2,
+    menu_name = '우럭쥬스',
+    menu_price = 6000,
+    category_code = 9,
+    orderable_status = 'N';
