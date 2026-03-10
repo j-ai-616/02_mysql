@@ -42,3 +42,41 @@ VALUES
         'Y',
         6
     );
+
+-- 다중 행 insert
+INSERT INTO
+    tbl_menu 
+VALUES
+    (
+        NULL, '참치맛아이스크림', 1700, 12, 'Y'
+    ),
+    (
+        NULL, '멸치맛아이스크림', 1500, 12, 'Y'
+    ),
+        (
+        NULL, '꽁치맛아이스크림', 1600, 12, 'Y'
+    );
+
+-- 2. update : 테이블에 기록 된 컬럼의 값을 수정하는 구문이다. 테이블의 전체 행의 개수에는 변화가 없다.
+-- set절에 변경할 컬럼 = 값 나열, where절에 변경 대상 행 선택
+UPDATE
+    tbl_menu
+SET  -- 수정하고 싶은 대상 컬럼을 작성
+    menu_price = 10500,
+    category_code = 5
+WHERE  -- 수정할 행 선택
+    menu_code = 24;
+
+-- 3. delete : 테이블의 행을 삭제하는 구문이다. 테이블의 행의 개수가 줄어든다.
+-- where절에서 삭제 대상 행을 반드시 선택해야 하며 생략할 경우 테이블의 전체 행이 삭제 된다.
+DELETE FROM
+    tbl_menu
+WHERE
+    menu_code = 29;
+
+-- order by절과 limit을 활용한 삭제
+DELETE FROM
+    tbl_menu
+ORDER BY
+    menu_code DESC
+Limit 2;
