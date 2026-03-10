@@ -153,3 +153,12 @@ GROUP BY  -- 위 코드에서 순서 변경
     category_code,
     menu_price
 WITH ROLLUP;
+
+-- select 문의 작성 순서: 1~5를 거쳐 행을 선택하고 6(조회) 시 7(정렬).
+-- 6) select
+-- 1) from
+-- 2) join
+-- 3) where
+-- 4) group by
+-- 5) having
+-- 7) order by
