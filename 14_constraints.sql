@@ -150,3 +150,32 @@ WHERE
 
 -- 자식 테이블의 값(10)이 NULL로 변경 되었음을 확인
 SELECT * FROM user_foreign_key2;
+
+-- 5. check 
+CREATE TABLE IF NOT EXISTS user_check
+(
+    user_no INT AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(225) NOT NULL,
+    gender CHAR(3) CHECK (gender IN ('남', '여')),    -- 한글 값 3byte
+    age INT CHECK (age > 19)
+);
+-- gender check 제약조건 위배
+INSERT INTO user_check (user_name, gender, age)  -- user_no는 자동채번버 
+VALUES ('유관순', '여자', 20);
+-- age check 제약조건 위배
+INSERT INTO user_check (user_name, gender, age)  -- user_no는 자동채번버 
+VALUES ('유관순', '여', 16);
+
+-- 6. default
+CREATE TABLE IF NOT EXISTS  tbl_country
+(
+    country_code INT AUTO_INCREMENT PRIMARY KEY,
+    country_name VARCHAR(255) DEFAULT '한국',
+    add_day DATE DEFAULT (CURRENT_DATE),
+    add_time TIME DEFAULT (CURRENT_TIME)
+);
+
+INSERT INTO tbl_country
+VALUES (NULL, DEFAULT, DEFAULT, DEFAULT);
+
+SELECT * FROM tbl_country;
