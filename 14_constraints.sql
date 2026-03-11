@@ -98,6 +98,11 @@ CREATE TABLE IF NOT EXISTS user_foreign_key1
     FOREIGN KEY(grade_code) REFERENCES user_grade(grade_code)
 );
 
+-- [참고]
+-- FK를 컬럼 레벨에 작성 : REFERENCES 참조대상테이블 (참조대상컬럼)
+-- FK를 테이블 레벨에 작성 FOREIGN KEY(제약대상컬럼) REFERENCES 참조대상테이블 (참조대상컬럼)
+-- 다만 MySQL 버전에 따라 컬럼 레벨에 작성 시 기능하지 않는 경우 있어 테이블 레벨에 작성 권고
+
 -- 정상 수행
 -- 10, 20, 30과 같이 부모 테이블에 존재하는 행은 fk 컬럼에서 참조해서 사용 가능 
 INSERT INTO user_foreign_key1(user_no, user_id, user_pwd, user_name, gender, phone, email, grade_code)
